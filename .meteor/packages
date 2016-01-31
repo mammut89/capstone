@@ -22,3 +22,6 @@ twbs:bootstrap
 iron:router
 accounts-ui
 accounts-password
+sanjo:jasmine
+velocity:html-reporter
+velocity:console-reporter
