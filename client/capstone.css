@@ -1,1 +1,14 @@
-/* CSS declarations go here */
+.logo > i {
+  position: relative;
+  left:50%;
+  margin:0 auto;
+  color: #d62598;
+}
+
+#search_div input {
+  display: inline-block;
+}
+
+.center-block {
+  text-align: center;
+}
