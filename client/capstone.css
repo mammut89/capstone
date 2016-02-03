@@ -12,3 +12,32 @@
 .center-block {
   text-align: center;
 }
+
+#search_input {
+  width: 30%;
+}
+
+.pd_top {
+  padding-top: 2em;
+}
+
+.bg_grey {
+  background-color: grey;
+}
+
+.category {
+  border-color: black;
+  border-width: 0.1em;
+  border-style: solid;
+  height: 7em;
+  padding-top: 20%;
+}
+
+.category p {
+  vertical-align: middle;
+}
+
+.hr_block {
+  display: inline-block;
+  width: 90%;
+}
