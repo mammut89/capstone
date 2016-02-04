@@ -13,3 +13,6 @@ Router.route('/checkout', function () {
 Router.route('/help', function () {
   this.render('helpComponent', {to: 'body'});
 });
+Router.route('/searchResults', function () {
+  this.render('searchResultsComponent', {to: 'body'});
+});
