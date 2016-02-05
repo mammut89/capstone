@@ -1,3 +1,5 @@
 Template.searchResults.helpers({
-    searchString: "some string"
+    searchString: function(){
+      return Session.get('searchString');
+    }
   });
