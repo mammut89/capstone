@@ -11,6 +11,7 @@ Template.searchResultsTable.helpers({
       var tableData = [];
       _.each(products, function(product){
         tableData.push({
+          productId : product.ProductNumber,
           productName : product.ProductName,
           price : product.Price
         });

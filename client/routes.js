@@ -19,3 +19,6 @@ Router.route('/search', function () {
 Router.route('/searchResults', function () {
   this.render('searchResultsComponent', {to: 'body'});
 });
+Router.route('/product/:id', function () {
+  this.render('productComponent', {to: 'body'});
+});
