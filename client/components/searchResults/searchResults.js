@@ -23,3 +23,27 @@ Template.searchResultsTable.helpers({
     return tableData;
   }
 });
+
+Template.searchResultsTable.events({
+  'click .js-add-to-cart': function(event, template) {
+    var productId = Number(event.currentTarget.id);
+    var cart = Session.get("Cart");
+    if(!cart) {
+      cart = {};
+    }
+    if(cart[productId]){
+      cart[productId] = cart[productId] + 1;
+    } else {
+      cart[productId] = 1;
+    }
+
+    Session.set("Cart", cart);
+    var nodeHtml = template.$('a[href$=' + productId + ']').html();
+    var productName = nodeHtml.replace("&nbsp;&nbsp;&nbsp;", " ") ;
+    noty({
+      text: 'Added ' + productName,
+      type: 'success',
+      timeout: 2000
+    });
+  }
+});
