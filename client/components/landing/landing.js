@@ -26,9 +26,9 @@ Template.category.events({
 });
 
 Template.search.events({
-    'onClick .js-submitSearch': function(event, tmpl){
+    'submit form': function(event, tmpl){
       event.preventDefault();
-      var searchString = event.target.search_input.value;
+      var searchString = event.target.searchText.value;
       Session.set('searchString', searchString);
       Router.go("/searchResults");
     }

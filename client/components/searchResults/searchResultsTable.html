@@ -1,0 +1,33 @@
+<template name="searchResultsTable">
+  <table class="table-bordered">
+    <thead>
+      <tr>
+        <td>
+          <b>ProductName</b>
+        </td>
+        <td>
+          <b>Price</b>
+        </td>
+        <td>
+          <b>Add to basket</b>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each searchResults}}
+      <tr>
+        <td>
+          {{productName}}
+        </td>
+        <td>
+          {{price}}
+        </td>
+        <td>
+          <input type="number" name="quantity">
+          <i class="fa fa-plus-circle"></i>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</template>

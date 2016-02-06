@@ -87,3 +87,21 @@
 .navbar-nav li a {
   font-size: 3em;
 }
+
+.table-bordered {
+  width: 100%;
+}
+
+td {
+  padding: 2px 2px 2px 4px;
+}
+
+input[type="number"] {
+  max-width: 50px;
+}
+
+.fa-plus-circle:before {
+  font-size: 20px;
+  margin-top: -15px;
+  position: absolute;
+}
