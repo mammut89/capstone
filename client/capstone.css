@@ -99,6 +99,12 @@ td {
 .fa-plus-circle i {
   font-size: 7em;
 }
+
+.fa-cart-plus {
+  font-size: 3em;
+  color: #009e0f
+}
+
 .td-addItem {
   width: 85px;
 }
