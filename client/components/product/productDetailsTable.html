@@ -1,0 +1,16 @@
+<template name="productDetailsTable">
+  <table class="table table-striped table-narrow">
+    <tbody>
+      {{#each productDetails}}
+      <tr>
+        <td>
+          {{key}}
+        </td>
+        <td>
+          {{value}}
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</template>
