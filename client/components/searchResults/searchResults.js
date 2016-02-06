@@ -13,7 +13,9 @@ Template.searchResultsTable.helpers({
         tableData.push({
           productId : product.ProductNumber,
           productName : product.ProductName,
-          price : product.Price
+          price : product.Price,
+          volume : product.Volume,
+          productType : product.ProductType
         });
       });
 
