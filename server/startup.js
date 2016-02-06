@@ -25,7 +25,7 @@
        filteredProduct.Sweetness = product.Sodme;
        filteredProduct.Year = product.Argang;
        filteredProduct.Alcohol = product.Alkohol;
-       filteredProduct.Shugar = product.Sukker;
+       filteredProduct.Sugar = product.Sukker;
        filteredProduct.Acid = product.Syre;
 
        Polet.insert(filteredProduct);

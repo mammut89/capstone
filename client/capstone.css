@@ -3,7 +3,7 @@
   left:50%;
   margin:0 auto;
   color: #d62598;
-  font-size: 7em
+  font-size: 7em;
 }
 
 #search_div input {
@@ -96,14 +96,15 @@ td {
   padding: 2px 2px 2px 4px;
 }
 
-input[type="number"] {
-  max-width: 50px;
+.fa-plus-circle i {
+  font-size: 7em;
+}
+.td-addItem {
+  width: 85px;
 }
 
-.fa-plus-circle:before {
-  font-size: 20px;
-  margin-top: -15px;
-  position: absolute;
+input[type="number"] {
+  max-width: 50px;
 }
 
 .table-narrow {

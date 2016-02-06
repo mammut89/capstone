@@ -1,13 +1,13 @@
 Template.productDetailsTable.helpers({
   productDetails: function() {
     var productId = Number(Iron.Location.get().path.split("/")[2]);
-    var product = Polet.find({
+    var product = Polet.findOne({
       ProductNumber: productId
-    }).fetch();
+    });
     var tableData = [];
 
-    _.each(product[0], function(value, key) {
-      if (key !== '_id' ) {
+    _.each(product, function(value, key) {
+      if (key !== '_id') {
         tableData.push({
           key: key,
           value: value
@@ -15,5 +15,15 @@ Template.productDetailsTable.helpers({
       }
     });
     return tableData;
+  }
+});
+
+Template.productDetails.helpers({
+  productName: function() {
+    var productId = Number(Iron.Location.get().path.split("/")[2]);
+    var product = Polet.findOne({
+      ProductNumber: productId
+    });
+    return product.ProductName;
   }
 });
