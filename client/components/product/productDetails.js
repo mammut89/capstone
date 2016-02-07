@@ -37,7 +37,7 @@ Template.productDetails.events({
       cart = {};
     }
     if(cart[productId]){
-      cart[productId] = cart[productId] + 1;
+      cart[productId] = Number(cart[productId] + 1);
     } else {
       cart[productId] = 1;
     }

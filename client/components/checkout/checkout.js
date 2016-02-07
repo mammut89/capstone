@@ -29,5 +29,14 @@ Template.checkoutTable.helpers({
   sum: function(){
     return Session.get("Sum");
   }
+});
 
+Template.checkoutTable.events({
+ 'change input': function(event) {
+   var productId = event.target.id;
+   var quantity = event.target.value;
+   var cart = Session.get("Cart");
+   cart[productId] = quantity;
+   Session.setPersistent("Cart", cart);
+ }
 });
