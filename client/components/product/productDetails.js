@@ -24,7 +24,7 @@ Template.productDetails.helpers({
     var product = Polet.findOne({
       ProductNumber: productId
     });
-    Session.set("Product", product);
+    Session.setPersistent("Product", product);
     return product.ProductName;
   }
 });
@@ -42,7 +42,7 @@ Template.productDetails.events({
       cart[productId] = 1;
     }
 
-    Session.set("Cart", cart);
+    Session.setPersistent("Cart", cart);
     var product = Session.get("Product");
     noty({
       text: 'Added ' + product.ProductName,

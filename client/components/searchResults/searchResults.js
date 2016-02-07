@@ -37,7 +37,7 @@ Template.searchResultsTable.events({
       cart[productId] = 1;
     }
 
-    Session.set("Cart", cart);
+    Session.setPersistent("Cart", cart);
     var nodeHtml = template.$('a[href$=' + productId + ']').html();
     var productName = nodeHtml.replace("&nbsp;&nbsp;&nbsp;", " ") ;
     noty({

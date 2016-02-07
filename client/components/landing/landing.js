@@ -29,7 +29,7 @@ Template.search.events({
     'submit form': function(event, tmpl){
       event.preventDefault();
       var searchString = event.target.searchText.value;
-      Session.set('searchString', searchString);
+      Session.setPersistent('searchString', searchString);
       Router.go("/searchResults");
     }
 });
