@@ -1,6 +1,6 @@
 
 Meteor.methods({
-  'getProductName': function(id) {
+  'getProduct': function(id) {
     return Polet.findOne({
       ProductNumber: id
     });

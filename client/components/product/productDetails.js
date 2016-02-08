@@ -7,9 +7,9 @@ Template.productDetails.helpers({
   productName: function() {
     var productId = Number(Iron.Location.get().path.split("/")[2]);
     var product = {};
-    Meteor.call('getProductName', productId, function(error, result) {
+    Meteor.call('getProduct', productId, function(error, result) {
       Session.setPersistent("Product", result);
-      product = result;
+      product = result || {};
       return product.ProductName;
     });
   }
@@ -23,7 +23,7 @@ Template.productDetailsTable.helpers({
     var tableData = [];
 
     _.each(product, function(value, key) {
-      if (key !== '_id') {
+      if (!(key === '_id' || key === 'Rating')) {
         tableData.push({
           key: key,
           value: value
@@ -34,12 +34,27 @@ Template.productDetailsTable.helpers({
   }
 });
 Template.productDetails.rendered = function() {
-  var productId = Number(Iron.Location.get().path.split("/")[2]);
-  var rating = Polet.findOne({ProductNumber: productId}).rating;
 
-  var ceil = Math.ceil(rating);
-  var floor = Math.floor(rating);
-  var percent = rating - floor;
+  var ratings;
+  if(Session.get("Product")){
+    ratings = Session.get("Product").Rating;
+  }
+  if (!ratings) {
+    return;
+  }
+
+  var ratingAverage = 0;
+  var ratingTotal = 0;
+  var ratingCounter = 0;
+
+  _.each(ratings, function(rating) {
+    ratingCounter = ratingCounter + Number(1);
+    ratingTotal = ratingTotal + rating;
+  });
+  ratingAverage = ratingTotal / ratingCounter;
+
+  var ceil = Math.ceil(ratingAverage);
+  var floor = Math.floor(ratingAverage);
 
   var elm = $('#rating');
   elm.find('.stars').removeClass(rtCss);
@@ -52,7 +67,7 @@ Template.productDetails.rendered = function() {
 };
 
 Template.productDetails.events({
-  'click .js-add-to-cart': function(a, b, c) {
+  'click .js-add-to-cart': function() {
     var productId = Number(Iron.Location.get().path.split("/")[2]);
     var cart = Session.get("Cart");
     if (!cart) {
@@ -65,24 +80,35 @@ Template.productDetails.events({
     }
 
     Session.setPersistent("Cart", cart);
-    var product = Session.get("Product");
-    noty({
-      text: 'Added ' + product.ProductName + ' to cart',
-      type: 'success',
-      timeout: 2000
+    var product;
+    Meteor.call('getProduct', productId, function(error, result) {
+      product = result;
+      noty({
+        text: 'Added ' + product.ProductName + ' to cart',
+        type: 'success',
+        timeout: 2000
+      });
     });
   },
   'click .js-rate-product': function(event) {
+    if (!Meteor.userId()) {
+      alert("You must be logged in for your vote to be stored!");
+      return;
+    }
     var productId = Number(Iron.Location.get().path.split("/")[2]);
-    var rating = $(event.currentTarget).data("userrating");
-    var id = Polet.findOne({
+    var chosenRating = $(event.currentTarget).data("userrating");
+    var product = Polet.findOne({
       ProductNumber: productId
-    })._id;
+    });
+    var rating = product.Rating || {};
+    var userId = Meteor.userId();
+    rating[userId] = chosenRating;
+
     Polet.update({
-      _id: id
+      _id: product._id
     }, {
       $set: {
-        rating: rating
+        Rating: rating
       }
     }, {
       upsert: true
