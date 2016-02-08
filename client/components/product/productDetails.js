@@ -34,36 +34,30 @@ Template.productDetailsTable.helpers({
   }
 });
 Template.productDetails.rendered = function() {
+  var productId = Number(Iron.Location.get().path.split("/")[2]);
 
-  var ratings;
-  if(Session.get("Product")){
-    ratings = Session.get("Product").Rating;
-  }
-  if (!ratings) {
-    return;
-  }
+  Meteor.call('getProduct', productId, function(error, result) {
+    var ratings = result.Rating || {};
+    var ratingAverage = 0;
+    var ratingTotal = 0;
+    var ratingCounter = 0;
 
-  var ratingAverage = 0;
-  var ratingTotal = 0;
-  var ratingCounter = 0;
+    _.each(ratings, function(rating) {
+      ratingCounter = ratingCounter + Number(1);
+      ratingTotal = ratingTotal + rating;
+    });
+    ratingAverage = ratingTotal / ratingCounter;
 
-  _.each(ratings, function(rating) {
-    ratingCounter = ratingCounter + Number(1);
-    ratingTotal = ratingTotal + rating;
+    var floor = Math.floor(ratingAverage);
+    var elm = $('#rating');
+    elm.find('.stars').removeClass(rtCss);
+
+    for (var i = floor; i >= 0; i--) {
+      getStarsEl(elm, i).addClass(rtCss);
+    }
+
+    elm.trigger('change');
   });
-  ratingAverage = ratingTotal / ratingCounter;
-
-  var ceil = Math.ceil(ratingAverage);
-  var floor = Math.floor(ratingAverage);
-
-  var elm = $('#rating');
-  elm.find('.stars').removeClass(rtCss);
-
-  for (var i = floor; i >= 0; i--) {
-    getStarsEl(elm, i).addClass(rtCss);
-  }
-
-  elm.trigger('change');
 };
 
 Template.productDetails.events({
