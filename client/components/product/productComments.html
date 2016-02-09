@@ -1,0 +1,15 @@
+<template name="productComments">
+  <span class="header">Comments</span>
+  <table class="table table-striped">
+    {{#each comments}}
+    <tr>
+      <td>
+        {{key}}
+      </td>
+      <td>
+        {{value}}
+      </td>
+    </tr>
+    {{/each}}
+  </table>
+</template>

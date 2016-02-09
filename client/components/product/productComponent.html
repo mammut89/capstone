@@ -2,6 +2,14 @@
   {{> navbar}}
   <div class="container">
     {{> productDetails}}
-    {{> productDetailsTable}}
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-6">
+        {{> productDetailsTable}}
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-6">
+        {{> productComments}}
+        {{> addComment}}
+      </div>
+    </div>
   </div>
 </template>

@@ -33,6 +33,45 @@ Template.productDetailsTable.helpers({
     return tableData;
   }
 });
+Template.productComments.helpers({
+  x: function() {
+    var productId = Number(Iron.Location.get().path.split("/")[2]);
+    return Meteor.call('getProduct', productId, function(error, result) {
+      var comments = result.Comments || {};
+      var tableData = [];
+
+      _.each(comments, function(value, key) {
+        tableData.push({
+          key: key,
+          value: value
+        });
+      });
+      return tableData;
+    });
+  },
+  comments :function() {
+    return Session.get("Comments");
+  }
+});
+
+
+Template.productComments.created = function() {
+  var productId = Number(Iron.Location.get().path.split("/")[2]);
+  return Meteor.call('getProduct', productId, function(error, result) {
+    var comments = result.Comments || {};
+    var tableData = [];
+
+    _.each(comments, function(value, key) {
+      tableData.push({
+        key: key,
+        value: value
+      });
+    });
+    Session.setPersistent("Comments", tableData);
+  });
+};
+
+
 Template.productDetails.rendered = function() {
   var productId = Number(Iron.Location.get().path.split("/")[2]);
 
@@ -106,6 +145,27 @@ Template.productDetails.events({
       }
     }, {
       upsert: true
+    });
+  }
+});
+Template.addComment.events({
+  'submit form': function(event) {
+    event.preventDefault();
+    var productId = Number(Iron.Location.get().path.split("/")[2]);
+    Meteor.call('getProduct', productId, function(error, result) {
+      var currentComments = result.Comments || {};
+      var newComment = event.currentTarget.comment.value;
+      currentComments[new Date()] = newComment;
+
+      Polet.update({
+        _id: result._id
+      }, {
+        $set: {
+          Comments: currentComments
+        }
+      }, {
+        upsert: true
+      });
     });
   }
 });
