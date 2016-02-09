@@ -1,12 +1,14 @@
 <template name="productComments">
   <span class="header">Comments</span>
   <table class="table table-striped">
-    {{#each comments}}
-    <tr>
-      <td>
-        {{value}}
-      </td>
-    </tr>
-    {{/each}}
+    <tbody>
+      {{#each comments}}
+      <tr>
+        <td>
+          {{value}}
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
   </table>
 </template>

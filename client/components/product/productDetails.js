@@ -135,6 +135,9 @@ Template.addComment.events({
     event.preventDefault();
     var productId = Number(Iron.Location.get().path.split("/")[2]);
     var newComment = event.currentTarget.comment.value;
+    if(newComment.length == 0) {
+      return;
+    }
     var currentComments = Session.get("Comments") || [];
     var newCommentObj = { value : newComment };
     currentComments.push(newCommentObj);
@@ -142,6 +145,7 @@ Template.addComment.events({
 
     Meteor.call('getProduct', productId, function(error, result) {
       var newComment = event.currentTarget.comment.value;
+      event.currentTarget.comment.value = "";
       var currentComments = Session.get("Comments") || [];
 
       Polet.update({
