@@ -23,7 +23,7 @@ Template.productDetailsTable.helpers({
     var tableData = [];
 
     _.each(product, function(value, key) {
-      if (!(key === '_id' || key === 'Rating')) {
+      if (!(key === '_id' || key === 'Rating' || key === 'Comments')) {
         tableData.push({
           key: key,
           value: value
@@ -34,43 +34,25 @@ Template.productDetailsTable.helpers({
   }
 });
 Template.productComments.helpers({
-  x: function() {
-    var productId = Number(Iron.Location.get().path.split("/")[2]);
-    return Meteor.call('getProduct', productId, function(error, result) {
-      var comments = result.Comments || {};
-      var tableData = [];
-
-      _.each(comments, function(value, key) {
-        tableData.push({
-          key: key,
-          value: value
-        });
-      });
-      return tableData;
-    });
-  },
   comments :function() {
     return Session.get("Comments");
   }
 });
 
-
-Template.productComments.created = function() {
+Template.addComment.rendered = function() {
   var productId = Number(Iron.Location.get().path.split("/")[2]);
-  return Meteor.call('getProduct', productId, function(error, result) {
-    var comments = result.Comments || {};
-    var tableData = [];
+    return Meteor.call('getProduct', productId, function(error, result) {
+      var comments = result.Comments || {};
+      var tableData = [];
 
-    _.each(comments, function(value, key) {
-      tableData.push({
-        key: key,
-        value: value
+      _.each(comments, function(value) {
+        tableData.push({
+          value: value.value
+        });
       });
+      Session.setPersistent("Comments", tableData);
     });
-    Session.setPersistent("Comments", tableData);
-  });
 };
-
 
 Template.productDetails.rendered = function() {
   var productId = Number(Iron.Location.get().path.split("/")[2]);
@@ -152,10 +134,15 @@ Template.addComment.events({
   'submit form': function(event) {
     event.preventDefault();
     var productId = Number(Iron.Location.get().path.split("/")[2]);
+    var newComment = event.currentTarget.comment.value;
+    var currentComments = Session.get("Comments") || [];
+    var newCommentObj = { value : newComment };
+    currentComments.push(newCommentObj);
+    Session.setPersistent("Comments", currentComments);
+
     Meteor.call('getProduct', productId, function(error, result) {
-      var currentComments = result.Comments || {};
       var newComment = event.currentTarget.comment.value;
-      currentComments[new Date()] = newComment;
+      var currentComments = Session.get("Comments") || [];
 
       Polet.update({
         _id: result._id
