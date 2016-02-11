@@ -1,6 +1,9 @@
 Template.checkoutTable.helpers({
   products: function() {
     var cart = Session.get("Cart");
+    if(!cart || !cart.keys){
+      return;
+    }
     var productIds = _.keys(cart);
     for(var i = 0; i < productIds.length; i++){
       productIds[i] = Number(productIds[i]);
@@ -41,5 +44,16 @@ Template.checkoutTable.events({
    var cart = Session.get("Cart");
    cart[productId] = quantity;
    Session.setPersistent("Cart", cart);
+ }
+});
+
+Template.checkoutFinal.events({
+ 'click .js-pay': function(event) {
+   Session.set("Cart", {});
+   alert("We will ship your products shortly, thank you for your purchase!");
+ },
+ 'click .js-empty-cart': function(event) {
+   event.preventDefault();
+   Session.set("Cart", {});
  }
 });
