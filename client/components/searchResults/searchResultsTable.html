@@ -5,7 +5,7 @@
         <td>
           <b>ProductName</b>
         </td>
-        <td>
+        <td id="product-type">
           <b>ProductType</b>
         </td>
         <td>
@@ -20,9 +20,9 @@
       {{#each searchResults}}
       <tr>
         <td>
-          <a href="/product/{{productId}}">{{productName}}&nbsp;&nbsp;&nbsp;{{volume}}L</a>
+          <a href="/product/{{productId}}">{{productName}} &nbsp;&nbsp;&nbsp;{{volume}}L</a>
         </td>
-        <td>
+        <td id="product-type">
           {{productType}}
         </td>
         <td>
