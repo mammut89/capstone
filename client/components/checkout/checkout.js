@@ -14,6 +14,9 @@ Template.checkoutTable.helpers({
     var sum = 0;
     _.each(productsInCart, function(product) {
       var quantity = cart[product.ProductNumber];
+      if(!quantity){
+        quantity = 0;
+      }
       tableData.push({
         productId: product.ProductNumber,
         productName: product.ProductName,
