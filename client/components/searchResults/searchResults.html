@@ -1,4 +1,7 @@
 <template name="searchResults">
     <h2>Search results</h2>
-    <h3>You searched for: <b>{{searchString}}</b></h3>
+    <span class="header">Search: </span>
+    <form>
+      {{> EasySearch.Input index=productIndex attributes=inputAttributes}}
+    </form>
 </template>

@@ -1,7 +1,8 @@
 Template.checkoutTable.helpers({
   products: function() {
     var cart = Session.get("Cart");
-    if(!cart || !cart.keys){
+    if(!cart || !Object.keys(cart).length){
+      Session.setPersistent("Sum", 0.00);
       return;
     }
     var productIds = _.keys(cart);

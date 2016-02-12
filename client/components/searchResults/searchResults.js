@@ -1,15 +1,22 @@
 Template.searchResults.helpers({
   searchString: function() {
     return Session.get('searchString');
-  }
+  },
+  inputAttributes: function() {
+    return {
+      'class': 'easy-search-input',
+      'placeholder': 'Start searching...',
+      'value': Session.get('searchString')
+    };
+  },
+  productIndex: () => ProductIndex
 });
 
 Template.searchResultsTable.helpers({
   searchResults: function() {
     var searchString = Session.get('searchString');
-    var products = Polet.find({
-      "ProductName": {$regex: ".*" + searchString + ".*"}
-    }).fetch();
+    var products = ProductIndex.search(searchString, {}).fetch()
+
     var tableData = [];
     _.each(products, function(product) {
       tableData.push({
@@ -21,17 +28,18 @@ Template.searchResultsTable.helpers({
       });
     });
     return tableData;
-  }
+  },
+  productIndex: () => ProductIndex
 });
 
 Template.searchResultsTable.events({
   'click .js-add-to-cart': function(event, template) {
     var productId = Number(event.currentTarget.id);
     var cart = Session.get("Cart");
-    if(!cart) {
+    if (!cart) {
       cart = {};
     }
-    if(cart[productId]){
+    if (cart[productId]) {
       cart[productId] = cart[productId] + 1;
     } else {
       cart[productId] = 1;
@@ -39,7 +47,7 @@ Template.searchResultsTable.events({
 
     Session.setPersistent("Cart", cart);
     var nodeHtml = template.$('a[href$=' + productId + ']').html();
-    var productName = nodeHtml.replace("&nbsp;&nbsp;&nbsp;", " ") ;
+    var productName = nodeHtml.replace("&nbsp;&nbsp;&nbsp;", " ");
     noty({
       text: 'Added ' + productName,
       type: 'success',

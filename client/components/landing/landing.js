@@ -30,10 +30,14 @@ Template.search.events({
     event.preventDefault();
     var searchString = event.target.searchText.value;
     Session.setPersistent('searchString', searchString);
+    ProductIndex.getComponentMethods()
+      .addProps('categoryFilter', $(event.target).val());
     Router.go("/searchResults");
   }
 });
 
 Template.search.helpers({
-  productIndex: () => ProductIndex
+  productIndex: function() {
+    return ProductIndex;
+  }
 });

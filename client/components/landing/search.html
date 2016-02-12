@@ -11,11 +11,5 @@
       </div>
     </div>
   </div>
-
-    {{> EasySearch.Input index=productIndex }}
-    <ul>
-        {{#EasySearch.Each index=productIndex }}
-            <li>{{ProductName}}</li>
-        {{/EasySearch.Each}}
-    </ul>
+  {{#EasySearch.Each index=productIndex }} {{/EasySearch.Each}}
 </template>
