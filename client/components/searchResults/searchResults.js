@@ -9,8 +9,8 @@ Template.searchResults.helpers({
       'value': Session.get('searchString')
     };
   },
-  productIndex: function(){
-      return ProductIndex;
+  productIndex: function() {
+    return ProductIndex;
   }
 });
 
@@ -31,8 +31,29 @@ Template.searchResultsTable.helpers({
     });
     return tableData;
   },
-  productIndex: function(){
-      return ProductIndex;
+  productIndex: function() {
+    return ProductIndex;
+  },
+  filtered: function(product) {
+    var Searchfilter = Session.get("Searchfilter") || {};
+    var criterias = {
+      'volumeFrom': true,
+      'volumeTo': true
+    };
+
+    if (Searchfilter.volumeFrom) {
+      if (this.Volume < Searchfilter.volumeFrom) {
+        criterias.volumeFrom = false;
+        return false;
+      }
+    }
+    if (Searchfilter.volumeTo) {
+      if (this.Volume > Searchfilter.volumeTo) {
+        criterias.volumeTo = false;
+        return false;
+      }
+    }
+    return !_.contains(_.values(criterias), false);
   }
 });
 
@@ -61,9 +82,20 @@ Template.searchResultsTable.events({
 });
 
 Template.searchResults.events({
-  'change .category-filter': function (e) {
+  'change .category-filter': function(e) {
     ProductIndex.getComponentMethods()
-      .addProps('categoryFilter', $(e.target).val())
-    ;
+      .addProps('categoryFilter', $(e.target).val());
+    ProductIndex.getComponentMethods()
+      .addProps('minScore', 0.8);
+  },
+  'change .js-volume-from': function(e) {
+    var Searchfilter = Session.get("Searchfilter") || {};
+    Searchfilter.volumeFrom = $(e.target).val();
+    Session.set("Searchfilter", Searchfilter);
+  },
+  'change .js-volume-to': function(e) {
+    var Searchfilter = Session.get("Searchfilter") || {};
+    Searchfilter.volumeTo = $(e.target).val();
+    Session.set("Searchfilter", Searchfilter);
   }
 });

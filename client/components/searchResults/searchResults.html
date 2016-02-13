@@ -6,7 +6,7 @@
   </form>
 
   <form>
-    <select class="category-filter">
+    <select class="form-control category-filter">
       <option value="">All</option>
       <option value="Beer">Beer</option>
       <option value="White wine">White wine</option>
@@ -25,7 +25,6 @@
       <option value="Other Liquor under 22 %">Other Liquor under 22 %</option>
       <option value="Other Liquor">Other Liquor</option>
       <option value="Liqour">Liqour</option>
-      <option value="Other">Other</option>
       <option value="Sherry">Sherry</option>
       <option value="Apéritif under 22%">Apéritif under 22%</option>
       <option value="NonAlcoholic">NonAlcoholic</option>
@@ -34,5 +33,11 @@
       <option value="Madeira">Madeira</option>
       <option value="Aquavit">Aquavit</option>
     </select>
+  </form>
+
+  <form>
+    <span>Volume</span>
+    <span>From</span> <input type="number" class="js-volume-from">
+    <span>To</span> <input type="number" class="js-volume-to"> 
   </form>
 </template>

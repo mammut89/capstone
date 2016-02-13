@@ -17,23 +17,25 @@
       </tr>
     </thead>
     <tbody>
-      {{#EasySearch.Each index=productIndex }}
-      <tr>
-        <td>
-          <a href="/product/{{ProductNumber}}">{{ProductName}} &nbsp;&nbsp;&nbsp;{{Volume}}L</a>
-        </td>
-        <td id="product-type">
-          {{ProductType}}
-        </td>
-        <td>
-          {{Price}}
-        </td>
-        <td class="td-addItem">
-          <input type="number" name="quantity" min="0" value="1" class="input">
-          <i id={{ProductNumber}} class="fa fa-plus-circle js-add-to-cart"></i>
-        </td>
-      </tr>
+      {{#EasySearch.Each index=productIndex}}
+          <tr>
+            <td>
+              <a href="/product/{{ProductNumber}}">{{ProductName}} &nbsp;&nbsp;&nbsp;{{Volume}}L</a>
+            </td>
+            <td id="product-type">
+              {{ProductType}}
+            </td>
+            <td>
+              {{Price}}
+            </td>
+            <td class="td-addItem">
+              <input type="number" name="quantity" min="0" value="1" class="input">
+              <i id={{ProductNumber}} class="fa fa-plus-circle js-add-to-cart"></i>
+            </td>
+          </tr>
       {{/EasySearch.Each}}
     </tbody>
   </table>
+  {{> EasySearch.Pagination index=productIndex maxPages=10 }}
+
 </template>
