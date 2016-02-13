@@ -1,7 +1,38 @@
 <template name="searchResults">
-    <h2>Search results</h2>
-    <span class="header">Search: </span>
-    <form>
-      {{> EasySearch.Input index=productIndex attributes=inputAttributes}}
-    </form>
+  <h2>Search results</h2>
+  <span class="header">Search: </span>
+  <form>
+    {{> EasySearch.Input index=productIndex attributes=inputAttributes}}
+  </form>
+
+  <form>
+    <select class="category-filter">
+      <option value="">All</option>
+      <option value="Beer">Beer</option>
+      <option value="White wine">White wine</option>
+      <option value="Red wine">Red wine</option>
+      <option value="Wheat wine">Wheat wine</option>
+      <option value="Port wine">Port wine</option>
+      <option value="Mulled wine">Mulled wine</option>
+      <option value="Vodka">Vodka</option>
+      <option value="Brandy">Brandy</option>
+      <option value="Whisky">Whisky</option>
+      <option value="Genever">Genever</option>
+      <option value="Gin">Gin</option>
+      <option value="Bitter">Bitter</option>
+      <option value="Fruity liqour">Fruity liqour</option>
+      <option value="Vermut">Vermut</option>
+      <option value="Other Liquor under 22 %">Other Liquor under 22 %</option>
+      <option value="Other Liquor">Other Liquor</option>
+      <option value="Liqour">Liqour</option>
+      <option value="Other">Other</option>
+      <option value="Sherry">Sherry</option>
+      <option value="Apéritif under 22%">Apéritif under 22%</option>
+      <option value="NonAlcoholic">NonAlcoholic</option>
+      <option value="Rom">Rom</option>
+      <option value="Cider">Cider</option>
+      <option value="Madeira">Madeira</option>
+      <option value="Aquavit">Aquavit</option>
+    </select>
+  </form>
 </template>

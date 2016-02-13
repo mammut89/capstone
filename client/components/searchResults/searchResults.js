@@ -9,7 +9,9 @@ Template.searchResults.helpers({
       'value': Session.get('searchString')
     };
   },
-  productIndex: () => ProductIndex
+  productIndex: function(){
+      return ProductIndex;
+  }
 });
 
 Template.searchResultsTable.helpers({
@@ -29,7 +31,9 @@ Template.searchResultsTable.helpers({
     });
     return tableData;
   },
-  productIndex: () => ProductIndex
+  productIndex: function(){
+      return ProductIndex;
+  }
 });
 
 Template.searchResultsTable.events({
@@ -53,5 +57,13 @@ Template.searchResultsTable.events({
       type: 'success',
       timeout: 2000
     });
+  }
+});
+
+Template.searchResults.events({
+  'change .category-filter': function (e) {
+    ProductIndex.getComponentMethods()
+      .addProps('categoryFilter', $(e.target).val())
+    ;
   }
 });

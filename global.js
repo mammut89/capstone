@@ -8,7 +8,7 @@ ProductIndex = new EasySearch.Index({
       var selector = this.defaultConfiguration().selector(searchObject, options, aggregation),
         categoryFilter = options.search.props.categoryFilter;
       if (_.isString(categoryFilter) && !_.isEmpty(categoryFilter)) {
-        selector.category = categoryFilter;
+        selector.ProductType = categoryFilter;
       }
       return selector;
     }
