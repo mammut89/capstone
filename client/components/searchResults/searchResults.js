@@ -85,17 +85,13 @@ Template.searchResults.events({
   'change .category-filter': function(e) {
     ProductIndex.getComponentMethods()
       .addProps('categoryFilter', $(e.target).val());
-    ProductIndex.getComponentMethods()
-      .addProps('minScore', 0.8);
   },
   'change .js-volume-from': function(e) {
-    var Searchfilter = Session.get("Searchfilter") || {};
-    Searchfilter.volumeFrom = $(e.target).val();
-    Session.set("Searchfilter", Searchfilter);
+    ProductIndex.getComponentMethods()
+      .addProps('volumeFrom', $(e.target).val());
   },
   'change .js-volume-to': function(e) {
-    var Searchfilter = Session.get("Searchfilter") || {};
-    Searchfilter.volumeTo = $(e.target).val();
-    Session.set("Searchfilter", Searchfilter);
+    ProductIndex.getComponentMethods()
+      .addProps('volumeTo', $(e.target).val());
   }
 });
