@@ -1,34 +1,42 @@
 Template.category.events({
   'click .js-selectWhiteWineCategory': function() {
-    Session.set("Category", 'White wine')
+    Session.set("Category", 'White wine');
+    Session.set("searchString", "");
     Router.go("/searchResults");
   },
   'click .js-selectRedWineCategory': function() {
-    Session.set("Category", 'Red wine')
+    Session.set("Category", 'Red wine');
+    Session.set("searchString", "");
     Router.go("/searchResults");
   },
-  'click .js-selectRoseWineCategory': function() {
-    Session.set("Category", 'Wheat wine')
+  'click .js-selectWheatWineCategory': function() {
+    Session.set("Category", 'Wheat wine');
+    Session.set("searchString", "");
     Router.go("/searchResults");
   },
   'click .js-selectSparklingWineCategory': function() {
-    Session.set("Category", 'Sparkling wine')
+    Session.set("Category", 'Sparkling wine');
+    Session.set("searchString", "");
     Router.go("/searchResults");
   },
   'click .js-selectWhiskyCategory': function() {
-    Session.set("Category", 'Whisky')
+    Session.set("Category", 'Whisky');
+    Session.set("searchString", "");
     Router.go("/searchResults");
   },
-  'click .js-selectCognacCategory': function() {
-    Session.set("Category", 'Cognac')
+  'click .js-selectBrandyCategory': function() {
+    Session.set("Category", 'Brandy');
+    Session.set("searchString", "");
     Router.go("/searchResults");
   },
   'click .js-selectBeerCategory': function() {
-    Session.set("Category", 'Beer')
+    Session.set("Category", 'Beer');
+    Session.set("searchString", "");
     Router.go("/searchResults");
   },
-  'click .js-selectOtherCategory': function() {
-    Session.set("Category", 'All')
+  'click .js-selectAllCategory': function() {
+    Session.set("Category", 'All');
+    Session.set("searchString", "");
     Router.go("/searchResults");
   }
 });
