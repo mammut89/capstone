@@ -11,6 +11,13 @@ Template.searchForm.helpers({
   }
 });
 
+Template.searchResultsTable.rendered = function() {
+  var category = Session.get("Category");
+  if(category){
+    $("#category").val(category).trigger('change');
+  }
+};
+
 Template.searchResultsTable.helpers({
   searchResults: function() {
     var searchString = Session.get('searchString');

@@ -1,27 +1,35 @@
 Template.category.events({
   'click .js-selectWhiteWineCategory': function() {
-    Router.go("/search");
+    Session.set("Category", 'White wine')
+    Router.go("/searchResults");
   },
   'click .js-selectRedWineCategory': function() {
-    Router.go("/search");
+    Session.set("Category", 'Red wine')
+    Router.go("/searchResults");
   },
   'click .js-selectRoseWineCategory': function() {
-    Router.go("/search");
+    Session.set("Category", 'Wheat wine')
+    Router.go("/searchResults");
   },
   'click .js-selectSparklingWineCategory': function() {
-    Router.go("/search");
+    Session.set("Category", 'Sparkling wine')
+    Router.go("/searchResults");
   },
   'click .js-selectWhiskyCategory': function() {
-    Router.go("/search");
+    Session.set("Category", 'Whisky')
+    Router.go("/searchResults");
   },
   'click .js-selectCognacCategory': function() {
-    Router.go("/search");
+    Session.set("Category", 'Cognac')
+    Router.go("/searchResults");
   },
   'click .js-selectBeerCategory': function() {
-    Router.go("/search");
+    Session.set("Category", 'Beer')
+    Router.go("/searchResults");
   },
   'click .js-selectOtherCategory': function() {
-    Router.go("/search");
+    Session.set("Category", 'All')
+    Router.go("/searchResults");
   }
 });
 
