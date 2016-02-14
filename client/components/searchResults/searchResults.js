@@ -1,7 +1,4 @@
-Template.searchResults.helpers({
-  searchString: function() {
-    return Session.get('searchString');
-  },
+Template.searchForm.helpers({
   inputAttributes: function() {
     return {
       'class': 'easy-search-input',
@@ -81,7 +78,7 @@ Template.searchResultsTable.events({
   }
 });
 
-Template.searchResults.events({
+Template.searchForm.events({
   'change .category-filter': function(e) {
     ProductIndex.getComponentMethods()
       .addProps('categoryFilter', $(e.target).val());
@@ -93,5 +90,13 @@ Template.searchResults.events({
   'change .js-volume-to': function(e) {
     ProductIndex.getComponentMethods()
       .addProps('volumeTo', $(e.target).val());
+  },
+  'change .js-price-from': function(e) {
+    ProductIndex.getComponentMethods()
+      .addProps('priceFrom', $(e.target).val());
+  },
+  'change .js-price-to': function(e) {
+    ProductIndex.getComponentMethods()
+      .addProps('priceTo', $(e.target).val());
   }
 });

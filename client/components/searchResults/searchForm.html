@@ -1,10 +1,9 @@
-<template name="searchResults">
-  <h2>Search results</h2>
-  <span class="header">Search: </span>
+<template name="searchForm">
   <form>
     {{> EasySearch.Input index=productIndex attributes=inputAttributes}}
   </form>
 
+  <h4>Category</h4>
   <form>
     <select class="form-control category-filter">
       <option value="">All</option>
@@ -36,8 +35,14 @@
   </form>
 
   <form>
-    <span>Volume</span>
-    <span>From</span> <input type="number" class="js-volume-from">
-    <span>To</span> <input type="number" class="js-volume-to"> 
+    <h4>Volume (Liter)</h4>
+    <input type="number" class="js-volume-from input" placeholder="From" min="0">
+    <input type="number" class="js-volume-to input" placeholder="To" min="0">
+  </form>
+
+  <form>
+    <h4>Price</h4>
+    <input type="number" class="js-price-from input" placeholder="From" min="0">
+    <input type="number" class="js-price-to input" placeholder="To" min="0">
   </form>
 </template>
