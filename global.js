@@ -11,22 +11,22 @@ ProductIndex = new EasySearch.Index({
         priceFilter = {};
 
       if (options.search.props.volumeFrom) {
-        volumeFilter.$gt =  Number(options.search.props.volumeFrom);
+        volumeFilter.$gte =  Number(options.search.props.volumeFrom);
       }
       if (options.search.props.volumeTo) {
         volumeFilter.$lt =  Number(options.search.props.volumeTo);
       }
-      if (volumeFilter.$gt || volumeFilter.$lt) {
+      if (volumeFilter.$gte || volumeFilter.$lt) {
         selector.Volume = volumeFilter;
       }
 
       if (options.search.props.priceFrom) {
-        priceFilter.$gt =  Number(options.search.props.priceFrom);
+        priceFilter.$gte =  Number(options.search.props.priceFrom);
       }
       if (options.search.props.priceTo) {
         priceFilter.$lt =  Number(options.search.props.priceTo);
       }
-      if (priceFilter.$gt || priceFilter.$lt) {
+      if (priceFilter.$gte || priceFilter.$lt) {
         selector.Price = priceFilter;
       }
 

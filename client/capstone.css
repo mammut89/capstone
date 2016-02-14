@@ -119,8 +119,8 @@ td a {
 .td-addItem {
   width: 100px;
 }
-input[type="number"] {
-  max-width: 67px;
+.td-addItem input[type="number"] {
+  max-width: 60px;
 }
 .table-narrow {
   width: auto;
@@ -137,6 +137,12 @@ input[type="number"] {
   border-radius: 4px;
   padding: 2px 10px 4px;
 }
+
+.input[type="number"] {
+  max-width: 75px;
+}
+
+
 .login-link-text {
   font-size: 1.7em !important;
 }

@@ -1,9 +1,9 @@
 Template.searchForm.helpers({
   inputAttributes: function() {
     return {
-      'class': 'easy-search-input',
+      'class': 'easy-search-input input',
       'placeholder': 'Start searching...',
-      'value': Session.get('searchString')
+      'value': Session.get('searchString'),
     };
   },
   productIndex: function() {
