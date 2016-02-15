@@ -1,8 +1,13 @@
 <template name="productDetails">
-    <h2>Product details</h2>
-    <h3>{{productName}}</h3>
-    <div>
+  <h2>Product details</h2>
+  <h3>{{productName}}</h3>
+  <div class="main-float">
+    <div class="float-left">
       <i class="fa fa-cart-plus js-add-to-cart"></i>
       {{> starsRating class="js-rate-product" id='rating' mutable=true}}
     </div>
+    <div class="float-right">
+      <img src={{iconsrc}} class="product-icon">
+    </div>
+  </div>
 </template>

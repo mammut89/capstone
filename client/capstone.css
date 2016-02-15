@@ -155,3 +155,19 @@ td a {
     display: none;
   }
 }
+
+.main-float {
+  overflow: hidden;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.product-icon {
+  width: 4em;
+}

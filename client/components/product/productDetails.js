@@ -12,6 +12,25 @@ Template.productDetails.helpers({
       product = result || {};
       return product.ProductName;
     });
+  },
+  iconsrc: function() {
+    var product = Session.get("Product");
+    if(product.ProductType === 'Red wine'){
+      return '../svg/redwine.svg';
+    }
+    if(product.ProductType === 'White wine'){
+      return '../svg/whitewine.svg';
+    }
+    if(product.ProductType === 'Brandy'){
+      return '../svg/cognac.svg';
+    }
+    if(product.ProductType === 'Beer'){
+      return '../svg/beer.svg';
+    }
+    if(product.ProductType === 'Sparkling wine'){
+      return '../svg/drink.svg';
+    }
+    return '../svg/talldrink.svg';
   }
 });
 Template.productDetailsTable.helpers({
