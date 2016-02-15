@@ -16,6 +16,16 @@ Template.searchResultsTable.rendered = function() {
   if(category){
     $("#category").val(category).trigger('change');
   }
+
+  var volumeFrom = $('.js-volume-from input').val();
+  var volumeTo = $('.js-volume-to input').val();
+  var priceFrom = $('.js-price-from input').val();
+  var priceTo = $('.js-price-to input').val();
+
+  ProductIndex.getComponentMethods().addProps('volumeFrom', volumeFrom);
+  ProductIndex.getComponentMethods().addProps('volumeTo', volumeTo);
+  ProductIndex.getComponentMethods().addProps('priceFrom', priceFrom);
+  ProductIndex.getComponentMethods().addProps('priceTo', priceTo);
 };
 
 Template.searchResultsTable.helpers({
